@@ -1,0 +1,8 @@
+#########################################
+#### DISTRIBUIÇÃO QUI-QUADRADO ####
+#########################################
+
+# Gera uma amostra aleatória de 1000 números seguindo uma distribuição qui-quadrado
+
+va_QuiQuadrado <- rchisq(1000,df = 33)
+hist(va_QuiQuadrado)
