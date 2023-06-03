@@ -1,0 +1,32 @@
+#########################################
+#### DISTRIBUIÇÃO NORMAL PADRÃO ####
+#########################################
+
+# O comando scale() padroniza uma variável aleatória.
+# # Ao aplicar o comando na variável va_normal que acabmos de criar, ela ficará com média zero e desvio padrão unitário
+
+va_normal_padrao <- scale(va_normal)
+hist(va_normal_padrao)
+
+# Exemplo: Suponha que a distribuição dos salários dos funcionários de uma empresa sigam uma distribuição
+# # normal com média 𝜇=2.500 e desvio padrão σ= 170.
+# # # Ao selecionar aleatoriamente um indivíduo dessa população, qual a probabilidade de ter
+# # # #  salário acima de 2.600 ?
+
+# # # # # Padronização
+
+z <- (2600-2500)/170
+pnorm(z, mean = 0, sd = 1)
+
+
+# ou simplesmente
+
+pnorm(z)
+
+
+# Podemos também visualizar onde está o nosso valor Z em relação a média
+
+plot(density(scale(va_normal))) #Plota curva de densidade
+
+abline(v = 0, col = 'blue') # Gera uma linha sobre média, que é zero pois padronizamos a distribuição
+abline(v = 0.58, col = 'red') # Gera uma linha sobre o valor z obtido
