@@ -1,0 +1,11 @@
+#########################################
+#### DISTRIBUIÇÃO T ####
+#########################################
+
+# Gera uma amostra aleatória de 1000 números seguindo uma distribuição T
+
+va_t <- rt(1000, df = 2)
+hist(va_t)
+
+# Observe que a distribuição t, assim como a normal padrão, é centrada no zero
+# Vá aumentando o grau de liberdade e observando o comportamento do histograma
