@@ -1,0 +1,41 @@
+####################### Intervalo de confiança para a média amostral pela distribuição t de Student 
+############# A teoria nos diz para utilizar a distribuição t de Student quando não soubermos o desvio padrão populacional.
+
+
+#  -> Vamos assumir que o desvio padrão que temos é obtido a partir da amostra
+# #  -> Vamos armazenar os valores em objetos
+
+media <- 30
+desvio_padrao_amostral <- 7.31
+n <- 30
+
+quantil_95_t <- qt(0.975,df = n-1)
+
+
+# Aplicando a fórmula vista na apostila fica:
+
+Limite_Superior_t <- 30+quantil_95_t*(desvio_padrao_amostral/sqrt(n))
+Limite_Inferior_t <- 30-quantil_95_t*(desvio_padrao_amostral/sqrt(n))
+paste("Com 95% de confiança, podemos afirmar que a média varia entre",Limite_Inferior_t,"e ",Limite_Superior_t)
+
+
+# Supondo que nossa variável já esteja em um data frame aqui no R, tem um comando para fornecer o intervalo de confiança de 
+# forma bem mais fácil Vamos gerar com o comando rnorm() uma variável aleatoria com média 30, desvio padrão 7,31 e n = 30 
+
+va <- rnorm(n = 30, mean = 30, sd = 7.31)
+
+#Vamos visualizar a va gerada
+
+hist(va)
+
+
+#Calculando o intervalo de 95% de confiança com a distribuição t de Student com a funçao t.test()
+
+IC <-t.test(va, conf.level = 0.95)
+IC$conf.int
+
+
+# Pronto, já temos o intervalo de confiança para média. Beeem mais fácil assim :)
+
+
+
