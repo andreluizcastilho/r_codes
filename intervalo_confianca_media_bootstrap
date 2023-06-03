@@ -1,0 +1,76 @@
+############### Intervalo de confiança para média via Bootstrap
+#############Vamos gerar uma va seguindo uma distribuição qui-quadrado
+
+va <- rchisq(n = 60, df = 3)
+#Observe o quão assimétrica é a va
+hist(va)
+
+
+#Inicializa variaveis
+
+medias <- c() #Essa variável é um vetor para armazenar a média de cada subamostra bootstrap
+R <- 1000 #Numero de subamostras extraídas para gerar a distribuição amostral de médias
+
+
+#bootstrap
+
+for (i in 1:R) {
+  #Realiza uma subamostragem aleatória com reposição da va
+  reamostra <- sample(va, size = 50, replace = T)
+  
+  #Armazena a média da subamostra
+  medias[i] <- mean(reamostra)
+}
+
+
+#Distribuicao das médias das subamostras (distribuição amostral da média da va)
+hist(medias)
+
+
+#Observe que mesmo a variável original não seguindo uma distribuição normal, o Teorema Central do Limite
+#nos garante que a distribuição das médias será normal se n é suficientemente grande
+#A partir das médias geradas, precisamos achar dois valores, o que corta a cauda inferior
+#e o que corta a cauda superior da distribuição. Lembrando que ela é simétrica
+#Caso o intervalo desejado seja de 95% de confiança, temos que ordenar essa distribuição
+#do menor valor para o maior e achar o valor que deixará 2,5% dos dados para trás e o
+#valor que deixará 97,5% para trás
+
+(1-0.95)/2
+1-(1-0.95)/2
+
+#Visualize o intervalo de confiança via bootstrap
+
+quantile( medias, probs = c(0.025,0.975))
+
+
+#Vamos realizar mais um experimento
+#Geraremos uma va com média = 30 e desvio padrão amostral =7.31 e n = 30
+va <- rnorm(n = 30, mean = 30, sd = 7.31)
+
+#Iremos calcular o intervalo de confiança usando o Bootstrap e também com a distribuição
+# t de Student. Compararemos os resultados.
+#Inicializa variavel para armazenar as médias de cada subamostra
+medias <- c()
+R <- 10000 #Numero de subamostras extraídas para gerar a distribuição amostral de médias
+
+#bootstrap
+for (i in 1:R) {
+  
+  #Realiza uma subamostragem aleatória com reposição da va
+  reamostra <- sample(va, size = 20, replace = T)
+  
+  #Armazena a média da subamostra
+  medias[i] <- mean(reamostra)
+}
+
+
+#Distribuicao das médias das subamostras (distribuição amostral da média da va)
+hist(medias)
+
+
+#Limites inferior e superior do intervalo pelo bootstrap
+quantile( medias, probs = c(0.025,0.975))
+
+#Limites inferior e superior do intervalo via t de Student
+IC<-t.test(va, conf.level = 0.95)
+IC$conf.int
