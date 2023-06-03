@@ -1,0 +1,24 @@
+#########################################
+#### DISTRIBUIÇÃO POISSON ####
+#########################################
+
+# Exemplo: Uma loja recebe em média, 6 (𝝺) clientes por minuto. Qual a probabilidade de que 5(x) clientes
+# # entrem em um minuto?
+
+dpois(x= 5,lambda = 6)
+
+# Onde:
+# # x é a quantidade a ser testada
+# # # lambda é a taxa média de ocorrêcia do evento em um determinado período de intervalo de tempo ou espaço
+# # # # Podemos utilizar a mesma funcao para obter a probabilidade de entrar um cliente, dois clientes... quinze clientes
+
+va_poison <- dpois(x = 1:15, lambda = 6)
+plot(va_poison)
+
+# Observe que os valores se distribuiem simetricamente en tormo de seis, use acontece porque o paramentro
+# # lambda é a média (e também o desvio padrão) da distribuição de Poisson
+# # # Também podemos obter a probabilidade acumulada de até 5 clientes entrarem na loja em um minuto
+# # # # Formalizando, queremos: P(X<=5)
+
+va_poison <- ppois(1:5, lambda = 6)
+plot(va_poison)
