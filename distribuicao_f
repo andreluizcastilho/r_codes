@@ -1,0 +1,18 @@
+#########################################
+#### DISTRIBUIÇÃO F ####
+#########################################
+
+# Gerando uma amostra aleatória de 1000 número seguindo uma distribuição F
+
+va_f <- rf( n= 1000, df1 = 5 , df2 = 33 )
+
+# Onde:
+# # n é a quantidade de números a ser gerado
+# # # df1 é o primeiro grau de liberidade
+# # # # df2 é o segundo grau de liberdade
+
+hist(va_f)
+
+
+# Vá aumentando os graus de liberdade e observe como a distribuição se aproxima da normal
+# # Informação Extra: Uma distribuição F é a razão entre duas chi-quadrado
