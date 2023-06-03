@@ -1,0 +1,29 @@
+##################################
+#### DISTRIBUIÇÃO GEOMÉTRICA ####
+##################################
+
+#  Exemplo: Definindo como sucesso o cliente comprar, e supondo que a probabilidade de sucesso é 50%.
+#  Qual a probabilidade da primeira venda ocorrer quando o quinto cliente entrar na loja?
+
+dgeom(x = 5, prob = 0.5)
+
+
+#  Onde:
+#  #  x é o número de tentativas
+#  #  #  prob é a probabilidade de sucessos
+#  #  #  #  Podemos utilizar a mesma função para nos dar a probabilidade do sucesso ocorrer na primeira tentativa, Segunda tentativa, terceira tentativa ... até a décima tentativa.
+
+va_geometrica <- dgeom(x = 1:10, prob = 0.5)
+va_geometrica
+plot(va_geometrica) 
+
+
+# Veja como as probabilidades vão diminuindo. A probabilidade de sucesso de 50% é relativamente alta,
+# # então é muito provavel que o sucesso ocorra logo nas primeiras tentativas
+# # # Podemos utilizar a distribuição geométrica acumulada para saber qual a probabilidade do primeiro sucesso
+# # # #  ocorrer na primeira tentativa OU na segunda tentativa OU na terceira tentativa
+
+# # # # # Formalizando, queremos: P(X<=3)
+
+va_geometrica_acumulada <- pgeom(0:3, prob = 0.5)
+plot(va_geometrica_acumulada)
